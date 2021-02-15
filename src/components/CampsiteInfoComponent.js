@@ -4,7 +4,6 @@ import {
   CardImg,
   CardText,
   CardBody,
-  CardTitle,
   Breadcrumb,
   BreadcrumbItem,
   Button,
@@ -26,8 +25,15 @@ class CommentForm extends React.Component {
 
     this.state = {
       isModalOpen: false,
+      rating: "",
+      author: "",
+      text: "",
+      touched: {
+        author: false,
+        text: false,
+        rating: false,
+      },
     };
-
     this.toggleModal = this.toggleModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -55,7 +61,7 @@ class CommentForm extends React.Component {
         <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
           <ModalHeader toggle={this.toggleModal}> Submit Comment</ModalHeader>
           <ModalBody>
-            <LocalForm onSubmit={this.handleSubmit}>
+            <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
               <div className="form-group">
                 <Label htmlfor="rating">Rating</Label>
                 <Control.select
@@ -64,11 +70,14 @@ class CommentForm extends React.Component {
                   name="rating"
                   className="form-control"
                 >
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+                  <option value="" selected disabled>
+                    Choose here
+                  </option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
                 </Control.select>
               </div>
               <div className="form-group">
