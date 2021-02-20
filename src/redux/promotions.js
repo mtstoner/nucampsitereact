@@ -1,4 +1,3 @@
-import { findAllByTestId } from "@testing-library/react";
 import * as ActionTypes from "./ActionTypes";
 
 export const Promotions = (
